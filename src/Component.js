@@ -3,7 +3,7 @@ import { StyleSheet, Text, View} from 'react-native';
 
 //
 
-export default class Row extends Component {
+export default class Component extends Component {
   constructor(props){
     super(props);
   
@@ -13,7 +13,6 @@ export default class Row extends Component {
   render() {
     return ( 
       <View>
-        <Text>{this.props.text}</Text>
       </View>
     );
   }

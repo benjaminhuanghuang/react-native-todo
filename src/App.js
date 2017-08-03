@@ -60,6 +60,8 @@ export default class App extends Component {
         complete:false
       }
     ]
+    this.setSource(newItems, newItems, {value:""});
+
     this.setState({
       items: newItems,
       value:""
