@@ -23,6 +23,7 @@ export default class App extends Component {
     this.handleAddItem = this.handleAddItem.bind(this);
     this.handleToggleAllComplete = this.handleToggleAllComplete.bind(this);
     this.setSource = this.setSource.bind(this);
+    this.handleToggleComplete = this.handleToggleComplete.bind(this);
   }
 
   setSource(items, itemsDataSource, otherState)
@@ -46,6 +47,19 @@ export default class App extends Component {
       items:newItems,
       allComplete: complete
     });
+  }
+
+  handleToggleComplete(key, complete)
+  {
+    const newItems = this.state.items.map((item)=>{
+      if(item.key !== key)
+        return item;
+      return {
+        ... item,
+        complete
+      }
+    });
+    this.setSource(newItems, newItems);
   }
 
   handleAddItem()
