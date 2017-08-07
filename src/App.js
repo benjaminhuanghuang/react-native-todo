@@ -34,6 +34,17 @@ export default class App extends Component {
     });
   }
 
+  handleToggleComplete(key, complete)
+  {
+    const newItems = this.state.items.map((item)=>{
+      if(item.key !== key)
+        return item;
+      return{
+        ...item,
+        complete
+      }
+    });
+  }
 
   handleToggleAllComplete ()
   {
@@ -96,10 +107,7 @@ export default class App extends Component {
             onScroll = {()=> Keyboard.dismiss()}
             renderRow = { ({key, ...value}) =>{
               return (
-                <Row
-                  key = {key}
-                  {...value}
-                />
+                <Row key = {key} {...value}/>
               );
             }}
             renderSeparator = {(sectionId, rowId)=>{

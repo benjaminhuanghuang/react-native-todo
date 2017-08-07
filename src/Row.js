@@ -15,10 +15,10 @@ export default class Row extends Component {
     return ( 
       <View style={styles.container}>
         <Switch
-          value={complete }
+          value={ complete } onValueChange = {this.props.onComplete}
         />
         <View style={styles.textWrap}>
-          <Text style={[styles.text, complete && styles.complete]}>{this.props.text}</Text>
+           <Text style={[styles.text, complete && styles.complete]}>{this.props.text} </Text> 
         </View>
       </View>
     );
@@ -28,16 +28,16 @@ export default class Row extends Component {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between'
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between"
   },
   text: {
     fontSize: 24,
     color: "#4d4d4d"
   },
   textWrap: {
-    flex: 1,
+    //flex: 1,
     marginHorizontal: 10
   },
   complete:{
