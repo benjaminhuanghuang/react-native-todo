@@ -12,14 +12,17 @@ export default class Component extends Component {
 
   render() {
     return ( 
-      <View>
+      <View style={styles.container}>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  content:{
-    flex: 1
+  content: {
+    padding: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
   }
 });
