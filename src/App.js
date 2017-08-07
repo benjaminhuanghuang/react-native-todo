@@ -24,6 +24,7 @@ export default class App extends Component {
     this.handleToggleAllComplete = this.handleToggleAllComplete.bind(this);
     this.setSource = this.setSource.bind(this);
     this.handleToggleComplete = this.handleToggleComplete.bind(this);
+    this.handleRemoveItem = this.handleRemoveItem.bind(this);
   }
 
   setSource(items, itemsDataSource, otherState)
@@ -60,19 +61,6 @@ export default class App extends Component {
     });
   }
 
-  handleToggleComplete(key, complete)
-  {
-    const newItems = this.state.items.map((item)=>{
-      if(item.key !== key)
-        return item;
-      return {
-        ... item,
-        complete
-      }
-    });
-    this.setSource(newItems, newItems);
-  }
-
   handleAddItem()
   {
     if (!this.state.value)
@@ -92,6 +80,13 @@ export default class App extends Component {
       value:""
     })
   }
+  
+  handleRemoveItem(key){
+    const newItems = this.state.items.filter((item)=>{
+      return item.key !== key
+    });
+    this.setSource(newItems, newItems); 
+  }
 
   render() {
     return ( 
@@ -107,7 +102,9 @@ export default class App extends Component {
             onScroll = {()=> Keyboard.dismiss()}
             renderRow = { ({key, ...value}) =>{
               return (
-                <Row key = {key} {...value}/>
+                <Row key = {key} {...value} 
+                onComplete={(complete)=>this.handleToggleComplete(key, complete)}
+                onRemove = {()=>this.handleRemoveItem(key)}/>
               );
             }}
             renderSeparator = {(sectionId, rowId)=>{
